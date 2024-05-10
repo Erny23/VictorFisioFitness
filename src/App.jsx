@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import reactLogo from './assets/react.svg'
-import './App.css'
+import './styles/App.css'
 
 // Works also with SSR as expected
 const Card = lazy(() => import('./Card'))
