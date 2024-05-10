@@ -1,6 +1,9 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import { Transform } from 'node:stream'
+import { createStaticHandler } from "react-router-dom/server"
+import createFetchRequest from "./request.js"
+//import routes from "./routes.jsx"
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -35,6 +38,8 @@ if (!isProduction) {
   app.use(compression())
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
+
+let handler = createStaticHandler(routes);
 
 // Serve HTML
 app.use('*', async (req, res) => {
@@ -96,6 +101,22 @@ app.use('*', async (req, res) => {
     console.log(e.stack)
     res.status(500).end(e.stack)
   }
+
+  let fetchRequest = createFetchRequest(req, res);
+  let context = await handler.query(fetchRequest);
+
+  let router = createStaticRouter(
+    handler.dataRoutes,
+    context
+  );
+  let html = ReactDOMServer.renderToString(
+    <StaticRouterProvider
+      router={router}
+      context={context}
+    />
+  );
+
+  res.send("<!DOCTYPE html>" + html);
 })
 
 // Start http server
