@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import { Transform } from 'node:stream'
-import { createStaticHandler } from "react-router-dom/server"
+import { createStaticHandler, createStaticRouter, StaticRouterProvider} from "react-router-dom/server"
+import ReactDOMServer from 'react-dom/server';
 import createFetchRequest from "./request.js"
-import routes from "./routes.jsx"
+import routes from "./src/routes/routes.jsx"
+import React from 'react';
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -12,29 +14,29 @@ const base = process.env.BASE || '/'
 const ABORT_DELAY = 10000
 
 // Cached production assets
-const templateHtml = isProduction
-  ? await fs.readFile('./dist/client/index.html', 'utf-8')
-  : ''
-const ssrManifest = isProduction
-  ? await fs.readFile('./dist/client/.vite/ssr-manifest.json', 'utf-8')
-  : undefined
+const templateHtml = isProduction ? await fs.readFile('./dist/client/index.html', 'utf-8') : '';
+const ssrManifest = isProduction ? await fs.readFile('./dist/client/.vite/ssr-manifest.json', 'utf-8') : undefined;
 
 // Create http server
 const app = express()
 
 // Add Vite or respective production middlewares
-let vite
+let vite = '';
+
 if (!isProduction) {
-  const { createServer } = await import('vite')
+  const { createServer } = await import('vite');
+
   vite = await createServer({
     server: { middlewareMode: true },
     appType: 'custom',
     base
-  })
-  app.use(vite.middlewares)
+  });
+
+  app.use(vite.middlewares);
+
 } else {
-  const compression = (await import('compression')).default
-  const sirv = (await import('sirv')).default
+  const compression = (await import('compression')).default;
+  const sirv = (await import('sirv')).default;
   app.use(compression())
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
@@ -42,9 +44,9 @@ if (!isProduction) {
 let handler = createStaticHandler(routes);
 
 // Serve HTML
-app.use('*', async (req, res) => {
+app.get('*', async (req, res) => {
   try {
-    const url = req.originalUrl.replace(base, '')
+    const url = req.originalUrl.replace(base, '');
 
     let template
     let render
@@ -109,6 +111,7 @@ app.use('*', async (req, res) => {
     handler.dataRoutes,
     context
   );
+
   let html = ReactDOMServer.renderToString(
     <StaticRouterProvider
       router={router}
@@ -121,5 +124,5 @@ app.use('*', async (req, res) => {
 
 // Start http server
 app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`)
+  console.log(`Servidor iniciado desde http://localhost:${port}`);
 })
