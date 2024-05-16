@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2020",  // Compile hasta ES2020 para una amplia compatibilidad del navegador
+    "useDefineForClassFields": true,  // Habilitar la inicialización automática de campos en clases
+    "lib": ["dom", "dom.iterable", "es2020"],  // Incluir las bibliotecas DOM y ES2020 necesarias
+    "module": "esnext",  // Utilice los módulos ESNext para una sacudida de árboles óptima
+    "skipLibCheck": true,  // Suprimir temporalmente la comprobación del tipo de biblioteca (eliminar cuando esté listo)
+
+    /* Node mode */
+    "moduleResolution": "Node",  // Utilice la resolución del módulo estilo nodo para SSR
+    "allowSyntheticDefaultImports": true,  // Permitir importaciones predeterminadas desde archivos no modulares
+    "allowJs": true,  // Permitir importar archivos JavaScript (opcional)
+    "isolatedModules": true,  // Habilite módulos aislados para una mejor sacudida de árboles
+    "noEmit": true,  // Deje que Vite maneje la emisión (no es necesario que TypeScript emita archivos)
+    "jsx": "react-jsx",  // Trate JSX como React JSX
+
+    /* Linting */
+    "strict": true,  // Habilite el modo estricto para seguridad de tipos
+    "noUnusedLocals": true,  // Advertir sobre variables no utilizadas
+    "noUnusedParameters": true,  // Advertir sobre parámetros de función no utilizados
+    "noFallthroughCasesInSwitch": true,  // Advierte sobre la falta de declaraciones "break" en casos de cambio
+  },
+  "include": ["src"],  // Incluya el directorio `src` para la compilación
+  "references": [{ "path": "./tsconfig.node.json" }]  // Haga referencia a un `tsconfig.node.json` separado para los tipos del lado del servidor (opcional)
+}
