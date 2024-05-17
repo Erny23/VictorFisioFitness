@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import Home from '../pages/Home'
 import Other from '../pages/Other'
-import '../App.css'
+import '../styles/App.css'
 
 export const Router = () => {
   return (
