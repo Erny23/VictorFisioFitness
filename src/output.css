@@ -1439,6 +1439,10 @@ input[type="range"]::-ms-fill-lower {
   height: 24rem;
 }
 
+.h-\[48px\] {
+  height: 48px;
+}
+
 .h-auto {
   height: auto;
 }
@@ -1458,6 +1462,10 @@ input[type="range"]::-ms-fill-lower {
 
 .h-screen {
   height: 100vh;
+}
+
+.max-h-\[48px\] {
+  max-height: 48px;
 }
 
 .max-h-\[90dvh\] {
@@ -1544,6 +1552,10 @@ input[type="range"]::-ms-fill-lower {
   width: 2.25rem;
 }
 
+.w-\[48px\] {
+  width: 48px;
+}
+
 .w-auto {
   width: auto;
 }
@@ -1588,6 +1600,10 @@ input[type="range"]::-ms-fill-lower {
 
 .max-w-\[100vw\] {
   max-width: 100vw;
+}
+
+.max-w-\[48px\] {
+  max-width: 48px;
 }
 
 .max-w-lg {
@@ -1756,6 +1772,10 @@ input[type="range"]::-ms-fill-lower {
 
 .grid-flow-col {
   grid-auto-flow: column;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-4 {
@@ -2252,6 +2272,11 @@ input[type="range"]::-ms-fill-lower {
 
 .\!bg-transparent {
   background-color: transparent !important;
+}
+
+.bg-\[\#C72414\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(199 36 20 / var(--tw-bg-opacity));
 }
 
 .bg-blue-100 {
@@ -2928,6 +2953,10 @@ input[type="range"]::-ms-fill-lower {
   text-align: center;
 }
 
+.font-\[\'stencilla\'\] {
+  font-family: 'stencilla';
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -3527,6 +3556,16 @@ input[type="range"]::-ms-fill-lower {
   scrollbar-width: none;
 }
 
+@font-face {
+  font-family: 'stencilla';
+
+  src: url('stencilla.ttf');
+}
+
+body #root nav div div div #menu:hover {
+  background-color: white;
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
@@ -3740,6 +3779,11 @@ input[type="range"]::-ms-fill-lower {
 
 .hover\:bg-gradient-to-br:hover {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:text-cyan-700:hover {
@@ -5673,10 +5717,6 @@ input[type="range"]::-ms-fill-lower {
     height: 1.75rem;
   }
 
-  .sm\:h-9 {
-    height: 2.25rem;
-  }
-
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -5717,6 +5757,10 @@ input[type="range"]::-ms-fill-lower {
 @media (min-width: 768px) {
   .md\:inset-0 {
     inset: 0px;
+  }
+
+  .md\:order-2 {
+    order: 2;
   }
 
   .md\:mx-2 {
@@ -5762,6 +5806,10 @@ input[type="range"]::-ms-fill-lower {
 
   .md\:max-w-xl {
     max-width: 36rem;
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -5845,6 +5893,10 @@ input[type="range"]::-ms-fill-lower {
   .lg\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
