@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import { Button } from 'flowbite-react'
 import NutritionContent from '../components/NutritionContent'
 import FoodContent from '../components/FoodContent'
 import DrinksContent from '../components/DrinksContent'
-import { Button } from 'flowbite-react';
 
 interface NutritionComponent {
   title: string;
