@@ -16,7 +16,7 @@ const Header = () => {
         </Navbar.Brand>
         <div className="flex md:order-2">
           <div className="flex items-center justify-center">
-            <Button id='menu' className='bg-transparent hover:text-black' onClick={() => setIsOpen(true)}>
+            <Button id='menu' color="white" onClick={() => setIsOpen(true)}>
               <HiMenuAlt2 className='text-2xl text-white' />
             </Button>
           </div>
