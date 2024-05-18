@@ -7,6 +7,6 @@
     src: url('stencilla.ttf');
 }
 
-/*body #root nav div div div #menu:hover {
-    background-color: white;
-}*/
+body #root #workouts .w-full .container .flex .relative .pointer-events-none svg {
+    color: rgb(199, 36, 20);
+}

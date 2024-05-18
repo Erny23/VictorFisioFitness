@@ -1,4 +1,5 @@
-import * as React from 'react'
+import ContentWorkouts from '../components/ContentWorkouts'
+import FilterWorkouts from '../components/FilterWorkouts'
 
 const Workouts = () => {
   return (
@@ -7,7 +8,13 @@ const Workouts = () => {
         <div className='my-14'>
           <h1 className='text-center text-3xl text-white font-bold'>Workouts</h1>
         </div>
-        <div className='w-full rounded-ss-3xl mt-5 h-1/5 bg-gray-200'></div>
+        <div className='w-full h-screen rounded-ss-3xl bg-gray-200 py-5'>
+          
+          <FilterWorkouts />
+
+          <ContentWorkouts />
+        
+        </div>
       </main>
     </>
   )
