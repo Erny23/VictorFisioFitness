@@ -1596,10 +1596,6 @@ input[type="range"]::-ms-fill-lower {
   width: max-content;
 }
 
-.w-48 {
-  width: 12rem;
-}
-
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -3005,6 +3001,11 @@ input[type="range"]::-ms-fill-lower {
   letter-spacing: -0.025em;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(63 131 248 / var(--tw-text-opacity));
@@ -3257,6 +3258,14 @@ input[type="range"]::-ms-fill-lower {
 
 .underline {
   text-decoration-line: underline;
+}
+
+.decoration-solid {
+  text-decoration-style: solid;
+}
+
+.underline-offset-2 {
+  text-underline-offset: 2px;
 }
 
 .placeholder-green-700::-moz-placeholder {
@@ -3706,6 +3715,10 @@ body #root #workouts .w-full .container .flex .relative .pointer-events-none svg
 
 .hover\:underline:hover {
   text-decoration-line: underline;
+}
+
+.hover\:no-underline:hover {
+  text-decoration-line: none;
 }
 
 .focus\:z-10:focus {
@@ -5617,4 +5630,8 @@ body #root #workouts .w-full .container .flex .relative .pointer-events-none svg
 
 .\[\&\>\*\]\:last\:border-b-0:last-child>* {
   border-bottom-width: 0px;
+}
+
+.\[\&_p\]\:inline p {
+  display: inline;
 }
