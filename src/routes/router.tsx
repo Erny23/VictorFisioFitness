@@ -16,12 +16,14 @@ import Financials from "../pages/Financials"
 import Files from "../pages/Files"
 import Forms from "../pages/Forms"
 import Settings from "../pages/Settings"
+import Login from "../pages/Login"
 
 export const Router = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
       <Route path="*" element={<Home />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/workouts" element={<Workouts />} />
       <Route path="/nutrition" element={<Nutrition />} />
       <Route path="/results" element={<Results />} />

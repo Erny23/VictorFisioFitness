@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import express from 'express'
+import 'dotenv/config'
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'

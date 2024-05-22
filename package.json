@@ -12,10 +12,13 @@
     "tail": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "compression": "^1.7.4",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.9.0",
+    "google-auth-library": "^9.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
