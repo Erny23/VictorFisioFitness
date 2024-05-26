@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import 'dotenv/config'
+import apiRest from './controllers/routes.js'
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -8,12 +9,8 @@ const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
 
 // Cached production assets
-const templateHtml = isProduction
-  ? await fs.readFile('./dist/client/index.html', 'utf-8')
-  : ''
-const ssrManifest = isProduction
-  ? await fs.readFile('./dist/client/.vite/ssr-manifest.json', 'utf-8')
-  : undefined
+const templateHtml = isProduction ? await fs.readFile('./dist/client/index.html', 'utf-8') : ''
+const ssrManifest = isProduction ? await fs.readFile('./dist/client/.vite/ssr-manifest.json', 'utf-8') : undefined
 
 // Create http server
 const app = express()
@@ -34,6 +31,9 @@ if (!isProduction) {
   app.use(compression())
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
+
+// Solicitudes APIRest
+app.use('/api', apiRest)
 
 // Serve HTML
 app.use('*', async (req, res) => {

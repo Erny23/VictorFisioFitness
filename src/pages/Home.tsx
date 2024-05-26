@@ -1,4 +1,3 @@
-import * as React from 'react'
 import ActivityFeed from '../components/ActivityFeed'
 import BotonesInit from '../components/ButtomsInit'
 import HorarioInit from '../components/CalendarInit'

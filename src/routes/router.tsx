@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
 
 //Estilos
 import '../App.css'
@@ -18,7 +19,7 @@ import Forms from "../pages/Forms"
 import Settings from "../pages/Settings"
 import Login from "../pages/Login"
 
-export const Router = () => {
+export const Router: React.FC = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
