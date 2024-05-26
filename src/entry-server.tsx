@@ -1,16 +1,25 @@
 import * as ReactDOMServer from "react-dom/server"
 import { StaticRouter } from "react-router-dom/server"
 
-import { Router } from "./routes/router";
+//Barra de navegacion
+import Header from "./layout/Header"
+import Footer from "./layout/Footer"
 
+//Rutas paa la navegacion
+import { Router } from "./routes/router"
+
+//Props para renderizar
 interface IRenderProps {
   path: string;
 }
 
+//Funcion para renderizar
 export const render = ({ path }: IRenderProps) => {
   return ReactDOMServer.renderToString(
     <StaticRouter location={path}>
+      <Header />
       <Router />
+      <Footer />
     </StaticRouter>
   );
 };

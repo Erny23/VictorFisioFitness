@@ -8,23 +8,33 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "preview": "cross-env NODE_ENV=production node ./src/server/server.js"
+    "preview": "cross-env NODE_ENV=production node server",
+    "tail": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "compression": "^1.7.4",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "flowbite": "^2.3.0",
+    "flowbite-react": "^0.9.0",
+    "google-auth-library": "^9.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "sirv": "^2.0.4"
   },
   "devDependencies": {
+    "@types/compression": "^1.7.5",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^5.2.10"
   }
