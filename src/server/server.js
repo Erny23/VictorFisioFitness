@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
 import express from 'express'
 
+
 // CONSTANTES
 const isProduction = process.env.NODE_ENV === 'production'// gracias al paquete cross-env esta variable de entorno
 //se asigna apenas inicie el programa, dependiendo del comando de ejecucion se asignara si es produccion o no...
@@ -31,16 +32,17 @@ const app = express() // instancia del paquete express a una constante llamada "
 // -> MIDDLEWARES
 let vite
 if (!isProduction) {
-  const { createServer } = await import('vite') // importacion asincrona
+  const { createServer } = await import('vite') // importacion asincrona de la funcion createServer, esta
+  //funcion es parte del paquete vite que sirve para crear un servidor local...
   vite = await createServer({
     server: { middlewareMode: true }, //conexiones a difernetes servidores usando llamados http y otras cosas
     appType: 'spa', //tipos de appType (spa/ mpa/ custom)
     base
-  }) // instanciacion asincrona a la variable "vite"
-  app.use(vite.middlewares) // asignar los respectivos middlewares al servidor que se le asigno
+  }) // instanciacion asincrona a la variable "vite" del servidor local
+  app.use(vite.middlewares) // asignar los respectivos middlewares al servidor que se le asigno.
   /**
    * si no es produccion se genera un servidor local usando el paquete de vite llamado "createServer",
-   * con el se el asignaran todas las configuraciones necesarias para optimizar y aprovechar bien el servidor local.
+   * con el se le asignaran todas las configuraciones necesarias para optimizar y aprovechar bien el servidor local.
    */
 
 } else {
@@ -71,6 +73,7 @@ app.use('*', async (req, res) => {
       template = await fs.readFile('./index.html', 'utf-8') //-> lectura del archivo index.html de forma asincrona.
       template = await vite.transformIndexHtml(url, template) //-> asignando la plantilla index.html al url asignado
       //de forma asincrona.
+
       render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render //-> estamos asignando el valor de este modulo
       //a la variable render.
 
