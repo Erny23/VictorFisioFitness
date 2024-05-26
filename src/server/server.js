@@ -34,7 +34,7 @@ if (!isProduction) {
   const { createServer } = await import('vite') // importacion asincrona
   vite = await createServer({
     server: { middlewareMode: true }, //conexiones a difernetes servidores usando llamados http y otras cosas
-    appType: 'custom', //tipos de appType (spa/ mpa/ custom)
+    appType: 'spa', //tipos de appType (spa/ mpa/ custom)
     base
   }) // instanciacion asincrona a la variable "vite"
   app.use(vite.middlewares) // asignar los respectivos middlewares al servidor que se le asigno
