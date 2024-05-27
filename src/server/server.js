@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
 import express from 'express'
+import 'dotenv/config'
+import apiRest from './controllers/routes.js'
 
 
 // CONSTANTES
@@ -59,6 +61,9 @@ if (!isProduction) {
    * asignar sus funciones y sus respuestas desde el servidor al cliente de produccion.
    */
 }
+
+// Solicitudes APIRest
+app.use('/api', apiRest)
 
 // Serve HTML
 app.use('*', async (req, res) => {

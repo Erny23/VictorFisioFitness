@@ -9,7 +9,7 @@
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "preview": "cross-env NODE_ENV=production node server",
-    "tail": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch"
+    "tail": "npx tailwindcss -i ./src/styles/index.css -o ./src/output.css --watch"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",

@@ -9,4 +9,4 @@ router.get("/data", (req, res) => {
   res.json({message: "Mensaje de APIRest"});
 });
 
-export default router
+export default router;
