@@ -30,7 +30,7 @@ const Nutrition: React.FC = () => {
   return (
     <>
       <main id='nutrition'>
-        <div className='flex flex-row my-14'>
+        <div className='flex flex-row my-14 overflow-x-auto'>
           <Button className='focus:ring-0' onClick={() => handleTitleClick({ title: 'Nutrition', content: <NutritionContent /> })}>
             <h1 className='ps-5 text-center text-3xl text-white font-bold'>Nutrición</h1>
           </Button>

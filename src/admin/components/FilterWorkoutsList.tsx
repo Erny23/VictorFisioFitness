@@ -1,12 +1,12 @@
-import { Button, TextInput } from 'flowbite-react'
-import { IoSearchSharp } from "react-icons/io5"
-import { CiFilter } from "react-icons/ci"
-import { CgArrowsExchangeAltV } from "react-icons/cg"
+import { IoSearchSharp } from 'react-icons/io5';
+import { CgArrowsExchangeAltV } from 'react-icons/cg';
+import { CiFilter } from 'react-icons/ci';
+import { TextInput, Button } from 'flowbite-react';
 
-const FilterWorkouts = () => {
+const FilterWorkoutsList = () => {
   return (
     <>
-      <section id='filterWorkouts'>
+      <section id='filterWorkoutsM'>
           <div className='container mx-auto px-8'>
               <TextInput id="search" type="text" icon={IoSearchSharp} placeholder="Buscar" />
               <div className='flex flex-row justify-end py-3'>
@@ -23,4 +23,4 @@ const FilterWorkouts = () => {
   )
 }
 
-export default FilterWorkouts
+export default FilterWorkoutsList
