@@ -38,7 +38,7 @@ if (!isProduction) {
   //funcion es parte del paquete vite que sirve para crear un servidor local...
   vite = await createServer({
     server: { middlewareMode: true }, //conexiones a difernetes servidores usando llamados http y otras cosas
-    appType: 'spa', //tipos de appType (spa/ mpa/ custom)
+    appType: 'custom', //tipos de appType (spa/ mpa/ custom)
     base
   }) // instanciacion asincrona a la variable "vite" del servidor local
   app.use(vite.middlewares) // asignar los respectivos middlewares al servidor que se le asigno.
