@@ -1,33 +1,44 @@
 import { CredentialResponse, GoogleLogin, googleLogout } from "@react-oauth/google"
 import { Button } from "flowbite-react"
-import DecodeJWT from "../utils/DecodeJWT"
+import { useState } from "react"
 
-const LoginComponent = () => {
+const LoginComponent:React.FC = () => {
 
-  function handleSuccess(credentialResponse: CredentialResponse) {
-    console.log("Credenciales: ", credentialResponse);
+  const [ email, setEmail ] = useState<string | null>(null);
+
+  const handleSuccess = async(credentialResponse: CredentialResponse) => {
     if (credentialResponse.credential) {
-      const { payload } = DecodeJWT(credentialResponse.credential);
-      console.log("payload credentials: ", payload);
+      const response = await fetch('/api/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: credentialResponse.credential
+        })
+      });
+      const data = await response.json();
+      setEmail(data.email);
     }
   };
 
   function handleError() {
-      console.log("Login error");
+    console.log("Login error");
   };
 
   const handleLogout = () => {
-      googleLogout();
+    googleLogout();
   };
 
   return (
     <>
       <div className="grid justify-center">
-          <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />
-          <br />
-          <div className="w-full flex justify-center">
-              <Button className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
-          </div>
+        {email === null && (<GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />)}
+        {email !== null && (<p>Sesión iniciada con: {email}</p>)}
+        <br />
+        <div className="w-full flex justify-center">
+          <Button className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
+        </div>
       </div>
     </>
   );

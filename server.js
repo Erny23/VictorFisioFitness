@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises'
 import express from 'express'
-import 'dotenv/config'
 import apiRest from './controllers/routes.js'
 
 // Constants

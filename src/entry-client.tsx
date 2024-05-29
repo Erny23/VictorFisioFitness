@@ -11,7 +11,7 @@ import { Router } from "./routes/router"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 
 //Id del cliente para inicio de sesion con OAuth Google
-const clientId: string = process.env.CLIENT_ID || '';
+const clientId: string = process.env.VITE_CLIENT_ID || '';
 
 //Renderiza los componentes en el lado del cliente
 ReactDOM.hydrateRoot(
