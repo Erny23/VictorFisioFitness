@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Navbar } from "flowbite-react"
 import { HiMenuAlt2 } from "react-icons/hi"
 import Menu from './Menu'
@@ -6,12 +6,30 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
 
+  const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      if (scrolled < 70) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [])
+
   return (
     <>
-       <Navbar className='bg-[#C72414] rounded-none' fluid rounded>
+       <Navbar className={`${visible ? 'bg-[#C72414]/80 backdrop-blur' : 'bg-[#C72414]'} fixed w-full top-0 rounded-none z-40`} fluid rounded>
         <Link to={'/'}>
           <Navbar.Brand href="#">
             <span className="self-center whitespace-nowrap text-md text-white font-semibold font-['stencilla']">VictorFisioFitness</span>

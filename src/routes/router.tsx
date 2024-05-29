@@ -25,6 +25,7 @@ import NutritionM from "../admin/NutritionM"
 import ChatsM from "../admin/ChatsM"
 import AllWorkoutsAssigned from "../admin/AllWorkoutsAssigned"
 import AllHabitsAssigned from "../admin/AllHabitsAssigned"
+import Habits from "../pages/Habits"
 
 export const Router: React.FC = () => {
   return (
@@ -38,6 +39,8 @@ export const Router: React.FC = () => {
       <Route path="/results" element={<Results />} />
       <Route path="/programs" element={<Programs />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/calendar" element={<Calendar />} />
+      <Route path="/hábitos" element={<Habits />} />
 
       {/* Paginas de login */}
       <Route path="/login" element={<Login />} />

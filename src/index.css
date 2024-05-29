@@ -7,6 +7,26 @@
     src: url('stencilla.ttf');
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body #root #workouts .w-full .container .flex .relative .pointer-events-none svg {
     color: rgb(199, 36, 20);
 }
