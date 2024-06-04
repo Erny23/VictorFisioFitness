@@ -1269,6 +1269,10 @@ input[type="range"]::-ms-fill-lower {
   margin-bottom: 0.5rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -1351,6 +1355,10 @@ input[type="range"]::-ms-fill-lower {
 
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.mt-52 {
+  margin-top: 13rem;
 }
 
 .mt-6 {
@@ -2313,6 +2321,10 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(199 36 20 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#C72414\]\/80 {
+  background-color: rgb(199 36 20 / 0.8);
+}
+
 .bg-blue-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(225 239 254 / var(--tw-bg-opacity));
@@ -2542,10 +2554,6 @@ input[type="range"]::-ms-fill-lower {
 .bg-yellow-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(159 88 10 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#C72414\]\/80 {
-  background-color: rgb(199 36 20 / 0.8);
 }
 
 .bg-opacity-50 {

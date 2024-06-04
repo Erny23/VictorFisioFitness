@@ -6,7 +6,7 @@ import HabitsInit from '../components/HabitsInit'
 const Home = () => {
   return (
     <>
-      <main id='home' className='mt-32'>
+      <main id='home' className='mt-52'>
         <div className='absolute w-full rounded-ss-full mt-5 h-1/5 z-0 bg-gray-200'></div>
 
         <BotonesInit />

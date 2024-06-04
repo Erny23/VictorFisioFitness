@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom"
-import React, { useState, useEffect } from 'react'
 
 //Estilos
 import '../App.css'
@@ -11,11 +10,6 @@ import Nutrition from "../pages/Nutrition"
 import Results from "../pages/Results"
 import Programs from "../pages/Programs"
 import Calendar from "../pages/Calendar"
-import Chat from "../pages/Chat"
-import Marketplace from "../pages/Marketplace"
-import Financials from "../pages/Financials"
-import Files from "../pages/Files"
-import Forms from "../pages/Forms"
 import Settings from "../pages/Settings"
 import Login from "../pages/Login"
 import HomeM from "../admin/HomeM"

@@ -2,8 +2,8 @@ import * as React from 'react'
 import { useState } from 'react'
 import { Button } from 'flowbite-react'
 import DetailsComponent from '../components/DetailsComponent'
-import MedicalComponent from '../components/MedicalComponent';
-import PaymentComponent from '../components/PaymentComponent';
+import MedicalComponent from '../components/MedicalComponent'
+import PaymentComponent from '../components/PaymentComponent'
 
 interface DetailsContent {
   title: string;
@@ -31,7 +31,7 @@ const Settings: React.FC = () => {
   return (
     <>
       <main id='settings'>
-        <div className='flex flex-row my-14 overflow-x-auto'>
+        <div className='flex flex-row mt-32 mb-20 overflow-x-auto'>
           <Button className='focus:ring-0' onClick={() => handleTitleClick({ title: 'Details', content: <DetailsComponent /> })}>
             <h1 className='ps-5 text-center text-3xl text-white font-bold'>Detalles</h1>
           </Button>

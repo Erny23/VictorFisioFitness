@@ -35,7 +35,12 @@ const Header = () => {
             <span className="self-center whitespace-nowrap text-md text-white font-semibold font-['stencilla']">VictorFisioFitness</span>
           </Navbar.Brand>
         </Link>
-        <div className="flex md:order-2">
+        <div className="flex flex-row items-center md:order-2">
+          <div>
+            <Link to={'/login'}>
+              <Button color="gray" size='xs' className='font-bold focus:ring-0'>Login</Button>
+            </Link>
+          </div>
           <div className="flex items-center justify-center">
             <Button id='menu' color="white" onClick={() => setIsOpen(true)}>
               <HiMenuAlt2 className='text-2xl text-white' />
