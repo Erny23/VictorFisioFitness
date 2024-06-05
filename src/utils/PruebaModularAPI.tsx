@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
 
-interface ApiDataType {
-  message?: string;
+interface users {
+    id?: number,
+    nombre?: string,
+    peso?: number
 }
 
-const PruebaAPIRest: React.FC = () => {
+const PruebaModularAPI: React.FC = () => {
 
-  const [apiData, setApiData] = useState<ApiDataType>({});
+  const [datos, setDatos] = useState<users[]>([]);
 
   const fetchData = async () => {
-    const response = await fetch('/api/users');
-    const data = await response.json();
-    setApiData(data);
+    await fetch('/api/ususarios')
+      .then(response => {
+        setDatos(response.datos); // Almacenar los datos en el estado
+      })
+      .catch(error => {
+        console.error(error); // Manejar el error
+      });
   };
 
   useEffect(() => {
@@ -22,11 +28,16 @@ const PruebaAPIRest: React.FC = () => {
     <>
       <div className='w-full flex justify-center py-5'>
         <div className='w-fit p-2 text-xl font-semibold bg-red-700 text-white rounded-xl'>
-          {apiData.message}
+          {datos.map(item => (
+            <div key={item.id}>
+              <h1>{item.nombre}</h1>
+              <p>{item.peso}</p>
+            </div>
+          ))}
         </div>
       </div>
     </>
   )
 };
 
-export default PruebaAPIRest;
+export default PruebaModularAPI;

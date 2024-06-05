@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
-import express from 'express'
+import express, { Request, Response} from 'express'
 import 'dotenv/config'
-import apiRest from './controllers/routes.js'
-
+import { ViteDevServer } from 'vite'
+import { router } from './routes/index'
 
 // CONSTANTES
 const isProduction = process.env.NODE_ENV === 'production'// gracias al paquete cross-env esta variable de entorno
@@ -32,7 +32,7 @@ const app = express() // instancia del paquete express a una constante llamada "
 
 // ADD VITE OR RESPECTIVE PRODUCTION MIDDLEWARES
 // -> MIDDLEWARES
-let vite
+let vite: ViteDevServer
 if (!isProduction) {
   const { createServer } = await import('vite') // importacion asincrona de la funcion createServer, esta
   //funcion es parte del paquete vite que sirve para crear un servidor local...
@@ -63,10 +63,11 @@ if (!isProduction) {
 }
 
 // Solicitudes APIRest
-app.use('/api', apiRest)
+app.use('/api', router);
+
 
 // Serve HTML
-app.use('*', async (req, res) => {
+app.use('*', async (req: Request, res: Response) => {
   try {
     const url = req.originalUrl.replace(base, '')//cambia la base del url por otro en el primer parametro se coloca
     // la base original y en el segundo el valor por el que se desea cambiar...
@@ -106,7 +107,10 @@ app.use('*', async (req, res) => {
 
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)// se asigna un codigo de estado, el tipo de datos
     // manejados y se envia la plantilla html...
-  } catch (e) {
+
+    res.status(200).set({ 'Content-Type': 'text/html' }).send(template);//-> provisionalmente
+
+  } catch (e: any) {
     vite?.ssrFixStacktrace(e)
     console.log(e.stack)
     res.status(500).end(e.stack)

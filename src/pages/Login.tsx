@@ -1,5 +1,5 @@
 import LoginComponent from '../components/LoginComponent'
-import PruebaAPIRest from '../utils/PruebaAPIRest'
+import PruebaModularAPI from '../utils/PruebaModularAPI'
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
           <br />
           <LoginComponent />
           <br />
-          <PruebaAPIRest />
+          <PruebaModularAPI />
         </div>
       </main>
     </>
