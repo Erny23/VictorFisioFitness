@@ -1,7 +1,5 @@
+import React from "react"
 import { Routes, Route } from "react-router-dom"
-
-//Estilos
-import '../App.css'
 
 //Paginas
 import Home from '../pages/Home'
@@ -20,34 +18,40 @@ import ChatsM from "../admin/ChatsM"
 import AllWorkoutsAssigned from "../admin/AllWorkoutsAssigned"
 import AllHabitsAssigned from "../admin/AllHabitsAssigned"
 import Habits from "../pages/Habits"
+import ProtectedRoutes from "../utils/ProtectedRoutes"
 
-export const Router: React.FC = () => {
+export const Router:React.FC<{isAuthenticated:boolean}> = ({isAuthenticated}) => {
   return (
     <Routes>
 
-      {/* Paginas de usuario */}
-      <Route index element={<Home />} />
-      <Route path="*" element={<Home />} />
-      <Route path="/workouts" element={<Workouts />} />
-      <Route path="/nutrition" element={<Nutrition />} />
-      <Route path="/results" element={<Results />} />
-      <Route path="/programs" element={<Programs />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/calendar" element={<Calendar />} />
-      <Route path="/hábitos" element={<Habits />} />
-
       {/* Paginas de login */}
       <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Login />} />
 
-      {/* Paginas de master */}
-      <Route path="/master" element={<HomeM />} />
-      <Route path="/master/clientes" element={<ClientsM />} />
-      <Route path="/master/entrenamientos" element={<WorkoutsM />} />
-      <Route path="/master/nutrición" element={<NutritionM />} />
-      <Route path="/master/chats" element={<ChatsM />} />
-      <Route path="/master/entrenamientos de hoy" element={<AllWorkoutsAssigned />} />
-      <Route path="/master/hábitos de hoy" element={<AllHabitsAssigned />} />
+      {/* Paginas protegidas */}
+      <Route path="/" element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
 
+        {/* Paginas de usuario */}
+        <Route index element={<Home />} />
+        <Route path="*" element={<Home />} />
+        <Route path="/workouts" element={<Workouts />} />
+        <Route path="/nutrition" element={<Nutrition />} />
+        <Route path="/results" element={<Results />} />
+        <Route path="/programs" element={<Programs />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/hábitos" element={<Habits />} />
+
+        {/* Paginas de master */}
+        <Route path="/master" element={<HomeM />} />
+        <Route path="/master/clientes" element={<ClientsM />} />
+        <Route path="/master/entrenamientos" element={<WorkoutsM />} />
+        <Route path="/master/nutrición" element={<NutritionM />} />
+        <Route path="/master/chats" element={<ChatsM />} />
+        <Route path="/master/entrenamientos de hoy" element={<AllWorkoutsAssigned />} />
+        <Route path="/master/hábitos de hoy" element={<AllHabitsAssigned />} />
+
+      </Route>
     </Routes>
   );
 };
