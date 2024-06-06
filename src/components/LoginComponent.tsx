@@ -1,33 +1,36 @@
-import { CredentialResponse, GoogleLogin, googleLogout } from "@react-oauth/google"
+import React from "react"
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google"
+import { AuthContext } from "../auth/AuthProvider"
 import { Button } from "flowbite-react"
-import DecodeJWT from "../utils/DecodeJWT"
+import { useNavigate } from "react-router-dom"
 
-const LoginComponent = () => {
+const LoginComponent:React.FC = () => {
 
-  function handleSuccess(credentialResponse: CredentialResponse) {
-    console.log("Credenciales: ", credentialResponse);
-    if (credentialResponse.credential) {
-      const { payload } = DecodeJWT(credentialResponse.credential);
-      console.log("payload credentials: ", payload);
-    }
+  const { email, login, logout } = React.useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleSuccess = (credentialResponse: CredentialResponse) => {
+    login(credentialResponse);
   };
 
   function handleError() {
-      console.log("Login error");
+    console.log("Login error");
   };
 
   const handleLogout = () => {
-      googleLogout();
+    logout();
   };
 
   return (
     <>
       <div className="grid justify-center">
-          <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />
-          <br />
-          <div className="w-full flex justify-center">
-              <Button className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
-          </div>
+        {email === null && (<GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />)}
+        {email !== null && (navigate('/'))}
+        <br />
+        <div className="w-full flex justify-center">
+          <Button className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
+        </div>
       </div>
     </>
   );

@@ -1,10 +1,6 @@
 import * as ReactDOMServer from "react-dom/server"
 import { StaticRouter } from "react-router-dom/server"
 
-//Barra de navegacion
-import Header from "./layout/Header"
-import Footer from "./layout/Footer"
-
 //Rutas paa la navegacion
 import { Router } from "./routes/router"
 
@@ -17,9 +13,7 @@ interface IRenderProps {
 export const render = ({ path }: IRenderProps) => {
   return ReactDOMServer.renderToString(
     <StaticRouter location={path}>
-      <Header />
       <Router />
-      <Footer />
     </StaticRouter>
   );
 };

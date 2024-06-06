@@ -3,13 +3,13 @@ import { LuCalendarClock } from "react-icons/lu"
 import { IoIosArrowForward } from "react-icons/io"
 import { Link } from "react-router-dom"
 
-const HabitsInit = () => {
+const HabitsAssigned = () => {
   return (
     <>
         <section className='relative z-10 w-full bg-gray-200'>
             <div className='container mx-auto px-4 py-2'>
                 <Card className='w-full'>
-                    <Link className="cursor-pointer" to={'/hábitos'}>
+                    <Link to={'/master/hábitos de hoy'}>
                         <div className='flex flex-row items-center justify-between'>
                             <h5 className='text-lg font-bold tracking-tight text-gray-900'>
                                 Hábitos de hoy
@@ -23,7 +23,8 @@ const HabitsInit = () => {
                                 <LuCalendarClock className='text-white text-3xl' />
                             </div>
                         </div>
-                        <h2 className='text-center text-xl text-gray-400 font-bold mt-3'>No hay hábitos para hoy</h2>
+                        <h2 className='text-center text-xl text-gray-400 font-bold mt-3'>Hábitos asignados</h2>
+                        <p className='text-center text-gray-400 mt-3'>Aquí se muestran los hábitos asignados a los usuarios hoy</p>
                     </div>
                 </Card>
             </div>
@@ -32,4 +33,4 @@ const HabitsInit = () => {
   )
 }
 
-export default HabitsInit
+export default HabitsAssigned
