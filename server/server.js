@@ -1,7 +1,9 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
 import express from 'express'
 import 'dotenv/config'
-import { router } from './routes/users.js'
+import { router as apiRest} from '../controllers/routes.js'
+import {router} from '../server/routes/users.js'
+import morgan from 'morgan'
 
 // CONSTANTES
 const isProduction = process.env.NODE_ENV === 'production'// gracias al paquete cross-env esta variable de entorno
@@ -61,8 +63,14 @@ if (!isProduction) {
    */
 }
 
+//middlewares
+app.use(morgan('dev'));
+app.use(express.json());
+
 //apis
+//app.use('/api/data', apiRest1);
 app.use('/api', router);
+app.use('/api', apiRest);
 
 // Serve HTML
 app.use('*', async (req, res) => {

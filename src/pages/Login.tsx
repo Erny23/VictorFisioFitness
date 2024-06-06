@@ -1,5 +1,6 @@
 import LoginComponent from '../components/LoginComponent'
-import PruebaModularAPI from '../utils/PruebaAPIRest'
+import PruebaAPIRest from '../utils/PruebaAPIRest'
+import PruebaModularAPI from '../utils/pruebaModularAPI'
 
 const Login = () => {
   return (
@@ -11,6 +12,8 @@ const Login = () => {
         <div className='w-full h-screen rounded-ss-3xl bg-gray-200 py-5'>
           <br />
           <LoginComponent />
+          <br />
+          <PruebaAPIRest />
           <br />
           <PruebaModularAPI />
         </div>

@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import express from 'express'
-import apiRest from './controllers/routes.js'
+import apiRest from './controllers/controller.js'
+
 import morgan from 'morgan'
 
 // Constants
@@ -37,7 +38,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Solicitudes APIRest
-app.use('/api', apiRest)
+app.use('/api/data', apiRest)
 
 // Serve HTML
 app.use('*', async (req, res) => {
