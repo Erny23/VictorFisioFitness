@@ -5,7 +5,10 @@ import fs from 'fs';
 const controller = {};
 
 controller.check = (req, res) => {
-    res.json({ message: "Mensaje de APIRest" });
+    const file = path.resolve('./controllers/info.json');
+    const data = fs.readFileSync(file, 'utf8');
+    const info = JSON.parse(data);
+    res.json(info);
 };
 
 controller.google =  async(req, res) => {
