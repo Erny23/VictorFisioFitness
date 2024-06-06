@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
-interface ApiDataType {
-  message?: string;
-}
-
 const PruebaAPIRest: React.FC = () => {
 
-  const [apiData, setApiData] = useState<ApiDataType>({});
+  interface usuarios {
+    id?: number,
+    nombre?: string,
+    peso?: number
+  }
+
+  const [apiData, setApiData] = useState<usuarios[]>([]);
 
   const fetchData = async () => {
-    const response = await fetch('/api/data');
+    const response = await fetch('/api/user');
     const data = await response.json();
-    setApiData(data);
+    setApiData(data.usuarios);
   };
 
   useEffect(() => {
@@ -22,7 +24,14 @@ const PruebaAPIRest: React.FC = () => {
     <>
       <div className='w-full flex justify-center py-5'>
         <div className='w-fit p-2 text-xl font-semibold bg-red-700 text-white rounded-xl'>
-          {apiData.message}
+        <ul>
+          {apiData.map((user) => (
+            <li key={user.id}>
+              <h2>{user.nombre}</h2>
+              <p>{user.peso}</p>
+            </li>
+          ))}
+        </ul>
         </div>
       </div>
     </>

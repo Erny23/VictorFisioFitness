@@ -1,8 +1,7 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
-import express, { Request, Response} from 'express'
+import express from 'express'
 import 'dotenv/config'
-import { ViteDevServer } from 'vite'
-import { router } from './routes/index'
+import { router } from './routes/users.js'
 
 // CONSTANTES
 const isProduction = process.env.NODE_ENV === 'production'// gracias al paquete cross-env esta variable de entorno
@@ -32,7 +31,7 @@ const app = express() // instancia del paquete express a una constante llamada "
 
 // ADD VITE OR RESPECTIVE PRODUCTION MIDDLEWARES
 // -> MIDDLEWARES
-let vite: ViteDevServer
+let vite
 if (!isProduction) {
   const { createServer } = await import('vite') // importacion asincrona de la funcion createServer, esta
   //funcion es parte del paquete vite que sirve para crear un servidor local...
@@ -62,12 +61,11 @@ if (!isProduction) {
    */
 }
 
-// Solicitudes APIRest
+//apis
 app.use('/api', router);
 
-
 // Serve HTML
-app.use('*', async (req: Request, res: Response) => {
+app.use('*', async (req, res) => {
   try {
     const url = req.originalUrl.replace(base, '')//cambia la base del url por otro en el primer parametro se coloca
     // la base original y en el segundo el valor por el que se desea cambiar...
@@ -89,7 +87,7 @@ app.use('*', async (req: Request, res: Response) => {
        */
     } else {
       template = templateHtml
-      render = (await import('../../dist/server/entry-server.js')).render
+      render = (await import('../dist/server/entry-server.js')).render
       /**
        * si estamos en produccion el programa seguira igual en este caso se importan las funciones del servidor
        * de forma mas sencilla y directa...
@@ -108,9 +106,7 @@ app.use('*', async (req: Request, res: Response) => {
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)// se asigna un codigo de estado, el tipo de datos
     // manejados y se envia la plantilla html...
 
-    res.status(200).set({ 'Content-Type': 'text/html' }).send(template);//-> provisionalmente
-
-  } catch (e: any) {
+  } catch (e) {
     vite?.ssrFixStacktrace(e)
     console.log(e.stack)
     res.status(500).end(e.stack)

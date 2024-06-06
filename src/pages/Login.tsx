@@ -1,5 +1,5 @@
 import LoginComponent from '../components/LoginComponent'
-import PruebaModularAPI from '../utils/PruebaModularAPI'
+import PruebaModularAPI from '../utils/PruebaAPIRest'
 
 const Login = () => {
   return (
