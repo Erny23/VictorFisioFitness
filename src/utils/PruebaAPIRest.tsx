@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react'
 
+<<<<<<< Updated upstream
+=======
+interface ApiDataType {
+  id?: string;
+  name?: string;
+  lastname?: string;
+  email?: string;
+  password?: string;
+  role?: string;
+  status?: string;
+}
+
+>>>>>>> Stashed changes
 const PruebaAPIRest: React.FC = () => {
 
   interface usuarios {
@@ -13,7 +26,12 @@ const PruebaAPIRest: React.FC = () => {
   const fetchData = async () => {
     const response = await fetch('/api/user');
     const data = await response.json();
+<<<<<<< Updated upstream
     setApiData(data.usuarios);
+=======
+    setApiData(data);
+    //console.log(data);
+>>>>>>> Stashed changes
   };
 
   useEffect(() => {
@@ -24,6 +42,7 @@ const PruebaAPIRest: React.FC = () => {
     <>
       <div className='w-full flex justify-center py-5'>
         <div className='w-fit p-2 text-xl font-semibold bg-red-700 text-white rounded-xl'>
+<<<<<<< Updated upstream
         <ul>
           {apiData.map((user) => (
             <li key={user.id}>
@@ -32,6 +51,9 @@ const PruebaAPIRest: React.FC = () => {
             </li>
           ))}
         </ul>
+=======
+          {apiData.status}
+>>>>>>> Stashed changes
         </div>
       </div>
     </>
