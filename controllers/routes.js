@@ -1,8 +1,13 @@
 import express from "express";
-import controller from './controller';
+import bodyParser from "body-parser";
+import controller from "./controller.js";
 
 const router = express.Router();
 
-router.get('/data', controller.check);
+router.use(bodyParser.json());
 
-export { router };
+router.get("/data", controller.check);
+
+router.post("/google", controller.google)
+
+export default router
