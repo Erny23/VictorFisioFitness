@@ -22,7 +22,7 @@ const PruebaAPIRest: React.FC = () => {
 
     setApiData(data);
 
-    console.log(data);
+    //console.log(data);
 
   };
 

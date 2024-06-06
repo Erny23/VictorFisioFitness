@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos local que devuelve promesas.
 import express from 'express'
 import 'dotenv/config'
-import { router as apiRest} from '../controllers/routes.js'
+import apiRest from '../controllers/routes.js'
 import {router} from '../server/routes/users.js'
 import morgan from 'morgan'
 
