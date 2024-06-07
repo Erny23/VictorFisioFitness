@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import apiRest from './controllers/routes.js'
+import morgan from 'morgan'
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -30,6 +31,10 @@ if (!isProduction) {
   app.use(compression())
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
+
+//middlewares
+app.use(morgan('dev'));
+app.use(express.json());
 
 // Solicitudes APIRest
 app.use('/api', apiRest)
