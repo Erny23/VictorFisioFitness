@@ -10,7 +10,7 @@ const router = Router();
 /*
 // Ejemplo de ruta que devuelve el contenido del archivo data.json
 router.get('/', (req, res) => {
-  const file = path.resolve('./database/datos.json');
+  const file = path.resolve('./database_example/datos.json');
   const data = fs.readFileSync(file, 'utf8');
   const info = JSON.parse(data);
   res.json(info);
