@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'// Es una api asincrona del sistema de archivos
 import express from 'express'
 import 'dotenv/config'
 import apiRest from '../controllers/routes.js'
-import {router} from '../server/routes/users.js'
+import { router } from '../server/routes/users.js'
 import morgan from 'morgan'
 
 // CONSTANTES

@@ -1,15 +1,8 @@
 import { Router } from 'express'
-import fs from 'node:fs'
-import path from 'node:path';
+import { router as controllers } from '../controllers/user.controller.js';
 
 const router = Router();
 
-// Ejemplo de ruta que devuelve el contenido del archivo data.json
-router.get('/user', (req, res) => {
-  const file = path.resolve('./database/datos.json');
-  const data = fs.readFileSync(file, 'utf8');
-  const info = JSON.parse(data);
-  res.json(info);
-});
+router.use('/user', controllers);
 
 export { router };
