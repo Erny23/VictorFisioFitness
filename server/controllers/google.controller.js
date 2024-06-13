@@ -1,19 +1,15 @@
 import { OAuth2Client } from 'google-auth-library';
-import path from 'path';
-import fs from 'fs';
+import 'dotenv/config';
+import { Router } from 'express';
 
-const controller = {};
+// instancia del obteto router
+const router = Router();
 
-controller.check = (req, res) => {
-    const file = path.resolve('./controllers/info.json');
-    const data = fs.readFileSync(file, 'utf8');
-    const info = JSON.parse(data);
-    res.json(info);
-};
-
-controller.google =  async(req, res) => {
+// metodo post del api de google
+router.post('/', async (req, res) => {
 
     const body = await req.body;
+    
     const client = new OAuth2Client(process.env.VITE_CLIENT_ID);
 
     if (!body) {
@@ -43,6 +39,6 @@ controller.google =  async(req, res) => {
         );
         return response
     }
-};
+});
 
-export default controller
+export default router;

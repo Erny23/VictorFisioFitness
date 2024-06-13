@@ -1,6 +1,6 @@
 import mysql from 'mysql'
 import { promisify } from 'node:util';
-import { database } from './keys.js'
+import { database } from './keys.js';
 
 const db = mysql.createPool(database);
 

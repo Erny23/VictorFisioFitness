@@ -1,4 +1,5 @@
 import { Router } from 'express'
+// importacion de herramientas para la lectura de archivo json de prueba
 //import fs from 'node:fs'
 //import path from 'node:path';
 
@@ -17,28 +18,33 @@ router.get('/', (req, res) => {
 });
 */
 
-// 
+// evento post de la ruta
 router.post('/', async (req, res) => {
 
   //desestructurando los parametro que se envian del cuarpo de la plantilla html
-  const { nombre, correo, telefono, sexo, fecha, peso, altura, meta} = req.body;
+  const body = req.body;
+
+  const { name, email, picture } = body;
 
   //asignando valor a un objeto user
   const user = {
-    nombre,
-    correo,
-    telefono,
-    sexo,
-    fecha,
-    peso,
-    altura,
-    meta
+    nombre: name,
+    correo: email,
+    img: picture
   }
 
-  // asignar usuario a la base de datos
-  await db.query('INSERT INTO fisiofitness set ?', [user]);
+  try{
+    // asignar usuario a la base de datos
+    await db.query('INSERT INTO users set ?', [user]);
 
-  res.end();
+    return res.status(200).send('verify data base ->');
+  } catch(error){
+    const response = res.json(
+      { message: error instanceof Error ? error.message: "No hubo conexion con la base de datos." },
+      { status: 400 }
+    );
+    return response;
+  }
 })
 
-export { router };
+export default router;

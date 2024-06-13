@@ -28,12 +28,10 @@ const LoginComponent:React.FC = () => {
         {email === null && (<GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />)}
         {email !== null && (navigate('/'))}
         <br />
-        <div className="w-full flex justify-center">
-          <Button className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
-        </div>
+        <Button type="submit" className="text-white bg-red-700 w-fit focus:ring-0" onClick={() => {handleLogout()}}>Logout</Button>
       </div>
     </>
   );
 };
 
-export default LoginComponent
+export default LoginComponent;
