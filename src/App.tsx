@@ -11,7 +11,7 @@ import Router from './routes/router'
 import { AuthContext } from './auth/AuthProvider'
 
 //Estilos
-import './App.css'
+import './styles/App.css'
 
 const App:React.FC = () => {
 

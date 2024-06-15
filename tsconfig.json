@@ -20,6 +20,6 @@
     "noUnusedParameters": true,  // Advertir sobre parámetros de función no utilizados
     "noFallthroughCasesInSwitch": true,  // Advierte sobre la falta de declaraciones "break" en casos de cambio
   },
-  "include": ["src"],  // Incluya el directorio `src` para la compilación
+  "include": ["src", "server"],  // Incluya el directorio `src` para la compilación
   "references": [{ "path": "./tsconfig.node.json" }]  // Haga referencia a un `tsconfig.node.json` separado para los tipos del lado del servidor (opcional)
 }

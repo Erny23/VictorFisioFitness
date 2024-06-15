@@ -1,5 +1,8 @@
-import React from "react"
 import { Routes, Route } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
+
+//Estilos
+import '../styles/App.css'
 
 //Paginas
 import Home from '../pages/Home'

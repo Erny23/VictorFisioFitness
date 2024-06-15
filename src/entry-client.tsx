@@ -1,6 +1,7 @@
 "use client";
 import * as ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
+import './styles/index.css'
 
 //Rutas para la navegacion
 import App from "./App"

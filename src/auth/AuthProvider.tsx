@@ -22,6 +22,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     
     const login = async(credentialResponse: CredentialResponse) => {
         if (credentialResponse.credential) {
+            // usar el api de google
             const response = await fetch('/api/google', {
                 method: 'POST',
                 headers: {
@@ -31,7 +32,17 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
                     token: credentialResponse.credential
                 })
             });
+            //obtener datos del api google
             const data = await response.json();
+            // usar el api de user
+            fetch('/api/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
             setIsAuthenticated(true);
             setEmail(data.email);
             setUser(data.name);
