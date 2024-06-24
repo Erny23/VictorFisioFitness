@@ -1,12 +1,10 @@
+
 interface usuarios {
-    nombre?: string,
-    correo?: string,
-    telefono?: number,
-    sexo?: string,
-    fecha?: string,
-    peso?: number,
-    altura?: number,
-    contra?: string
+    user: string,
+    email: string,
+    picture?: string,
+    password: string,
+    user_type: string
 }
 
 export default usuarios;

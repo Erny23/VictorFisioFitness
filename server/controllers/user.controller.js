@@ -22,20 +22,22 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
 
   //desestructurando los parametro que se envian del cuarpo de la plantilla html
-  const body = req.body;
+  const body = await req.body;
 
-  const { name, email, picture } = body;
+  const { user, email, picture, password, user_type } = body;
 
   //asignando valor a un objeto user
-  const user = {
-    nombre: name,
+  const User = {
+    nombre: user,
     correo: email,
-    img: picture
+    img: picture,
+    password: password,
+    user_type: user_type
   }
 
   try{
     // asignar usuario a la base de datos
-    await db.query('INSERT INTO users set ?', [user]);
+    await db.query('INSERT INTO users set ?', [User]);
 
     return res.status(200).send('verify data base ->');
   } catch(error){
