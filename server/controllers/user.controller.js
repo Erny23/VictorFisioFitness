@@ -24,11 +24,11 @@ router.post('/', async (req, res) => {
   //desestructurando los parametro que se envian del cuarpo de la plantilla html
   const body = await req.body;
 
-  const { user, email, picture, password, user_type } = body;
+  const { name, email, picture, password, user_type } = body;
 
   //asignando valor a un objeto user
   const User = {
-    nombre: user,
+    nombre: name,
     correo: email,
     img: picture,
     password: password,

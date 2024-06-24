@@ -1,6 +1,6 @@
 
 interface usuarios {
-    user: string,
+    name: string,
     email: string,
     picture?: string,
     password: string,

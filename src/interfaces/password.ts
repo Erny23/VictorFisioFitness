@@ -1,6 +1,6 @@
 interface password {
-    password1: string,
-    password2: string
+    password: string,
+    cpassword: string
 }
 
 export default password;

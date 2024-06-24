@@ -1,16 +1,16 @@
 import React from 'react'
 import usuarios from '../interfaces/usuarios';
-//import password from '../interfaces/password';
+import password from '../interfaces/password';
 import { CredentialResponse } from '@react-oauth/google'
 
 type AuthContextProps = {
     isAuthenticated: boolean;
     email: string | null;
     picture: string | null;
-    user: string | null;
+    name: string | null;
     userT: string | null;
     password: string | null;
-    login: (form: any, userType: string, credentialResponse?: CredentialResponse) => void;
+    login: (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse) => void;
     logout: () => void;
     authState: () => void;
     
@@ -25,7 +25,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
 
     const [ isAuthenticated, setIsAuthenticated ] = React.useState(false);
     const [ email, setEmail ] = React.useState(null);
-    const [ user, setUser ] = React.useState(null);
+    const [ name, setName ] = React.useState(null);
     const [ picture, setPicture ] = React.useState(null);
     const [ userT, setUserT] = React.useState(null);
     const [ password, setPassword] = React.useState(null);
@@ -42,9 +42,9 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
         return res;
     }
 
-    async function login (form: any, userType: string, credentialResponse?: CredentialResponse){
+    async function login (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse){
         //let data: usuarios;
-        if (true) {
+        if (credentialResponse.credential) {
             // usar el api de google
             const response = await fetch('/api/google', {
                 method: 'POST',
@@ -57,7 +57,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
             });
             //obtener datos del api google
             let data = await response.json();
-            console.log(data.message);
+            console.log(data);
             data.password = form.password;
             data.user_type = userType;
             // usar el api de user
@@ -71,7 +71,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
 
             setIsAuthenticated(true);
             setEmail(data.email);
-            setUser(data.user);
+            setName(data.name);
             setPicture(data.picture);
             setUserT(evalUserT(userType))
             setPassword(data.password);
@@ -106,7 +106,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     const logout = () => {
         setIsAuthenticated(false);
         setEmail(null);
-        setUser(null);
+        setName(null);
         setPicture(null);
         setPassword(null);
         setUserT(null);
@@ -115,7 +115,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     
     const authState = () => {
         if (isAuthenticated === true && email !== null){
-            return localStorage.setItem('authState', JSON.stringify({ isAuthenticated, email, user, picture, password, userT }));
+            return localStorage.setItem('authState', JSON.stringify({ isAuthenticated, email, name, picture, password, userT }));
             //console.log('login', JSON.parse(localStorage.getItem('authState')!));
         } else if (localStorage.getItem('authState')) {
             const session = JSON.parse(localStorage.getItem('authState')!);
@@ -123,7 +123,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
             return(
                 setIsAuthenticated(session.isAuthenticated),
                 setEmail(session.email),
-                setUser(session.user),
+                setName(session.name),
                 setPicture(session.picture),
                 setPassword(session.password),
                 setUserT(session.userT)
@@ -132,7 +132,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, email, user, picture, userT, password, login, logout, authState }}>
+    <AuthContext.Provider value={{ isAuthenticated, email, name, picture, userT, password, login, logout, authState }}>
       {children}
     </AuthContext.Provider>
   )

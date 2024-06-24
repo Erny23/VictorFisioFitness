@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom"
 
 const LoginComponent:React.FC = () => {
 
-  const { password, email, login } = React.useContext(AuthContext);
+  const { email, login } = React.useContext(AuthContext);
 
   const [token, setToken] = useState<CredentialResponse>({});
   const [userType, setUserType] = useState('');
-
   const [inputVal, setInputVal] = useState({
     password: '',
     cpassword: ''
@@ -33,11 +32,12 @@ const LoginComponent:React.FC = () => {
 
     if(password !== cpassword){
       alert('las contraseñas son distintas');
-    } else if(token === {}){
+      return;
+    } else if(token.credential === undefined){
       alert('no asigno un correo todavia');
-    } else {
-      login(inputVal, userType, token);
+      return;
     }
+    login(inputVal, userType, token);
   }
 
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const LoginComponent:React.FC = () => {
         {email === null ? (<GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />) : (navigate('/'))}
         <br />
       </div>
-      <form className="max-w-sm mx-auto" onSubmit={() => validateHaddleSubmit}>
+      <form className="max-w-sm mx-auto">
         <div className="mb-5">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password</label>
             <input type="password" onChange={e => setVal(e)} name="password" value={inputVal.password} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
