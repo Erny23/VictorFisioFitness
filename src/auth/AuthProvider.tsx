@@ -43,8 +43,8 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     }
 
     async function login (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse){
-        //let data: usuarios;
-        if (credentialResponse.credential) {
+        let data: usuarios | password;
+        if (credentialResponse?.credential) {
             // usar el api de google
             const response = await fetch('/api/google', {
                 method: 'POST',
@@ -56,8 +56,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
                 })
             });
             //obtener datos del api google
-            let data = await response.json();
-            console.log(data);
+            const data = await response.json();
             data.password = form.password;
             data.user_type = userType;
             // usar el api de user
@@ -68,14 +67,6 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
                 },
                 body: JSON.stringify(data)
             });
-
-            setIsAuthenticated(true);
-            setEmail(data.email);
-            setName(data.name);
-            setPicture(data.picture);
-            setUserT(evalUserT(userType))
-            setPassword(data.password);
-            authState();
 
         }else{
             //uso de la api user
@@ -89,18 +80,18 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
 
             data = form;
         }
-        /*
+        
         //asignar datos al local storage
         if(data.picture){
             setPicture(data.picture);
         }
         setIsAuthenticated(true);
         setEmail(data.email);
-        setUser(data.user);
+        setName(data.name);
         setUserT(evalUserT(userType))
         setPassword(data.password);
         authState();
-        */
+        
     };
 
     const logout = () => {

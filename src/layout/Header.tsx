@@ -8,7 +8,7 @@ import { AuthContext } from '../auth/AuthProvider'
 
 const Header:React.FC = () => {
 
-  const { isAuthenticated, email, user, picture, authState, logout } = React.useContext(AuthContext);
+  const { isAuthenticated, email, name, picture, authState, logout } = React.useContext(AuthContext);
 
   authState();
 
@@ -21,7 +21,7 @@ const Header:React.FC = () => {
   const content = (
     <div className="w-fit text-sm text-gray-500">
       <div className="border-b border-gray-200 bg-gray-100 text-center px-3 py-2">
-        <h3 className="font-semibold text-gray-900">{user}</h3>
+        <h3 className="font-semibold text-gray-900">{name}</h3>
         <span className="font-base text-gray-600">{email}</span>
       </div>
       <div className="px-3 py-2">
