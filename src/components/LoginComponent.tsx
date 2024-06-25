@@ -52,6 +52,8 @@ const LoginComponent:React.FC = () => {
     console.log("Login error");
   };
 
+  console.log(email);
+
   return (
     <>
       <div className="grid justify-center">

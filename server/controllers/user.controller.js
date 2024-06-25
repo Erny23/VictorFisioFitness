@@ -47,6 +47,13 @@ router.post('/', async (req, res) => {
     );
     return response;
   }
+});
+
+//metodo get
+router.get('/', async (req, res) => {
+  const users = await db.query('SELECT * FROM users');
+
+  res.send(users);
 })
 
 export default router;

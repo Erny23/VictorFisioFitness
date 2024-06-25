@@ -10,10 +10,10 @@ type AuthContextProps = {
     name: string | null;
     userT: string | null;
     password: string | null;
-    login: (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse) => void;
+    login: (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse) => Promise<string>;
     logout: () => void;
+    confirmDates: () => void;
     authState: () => void;
-    
 };
 
 export const AuthContext = React.createContext<AuthContextProps>(null as unknown as AuthContextProps);
@@ -43,8 +43,10 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     }
 
     async function login (form: usuarios | password, userType: string, credentialResponse?: CredentialResponse){
+
         let data: usuarios | password;
-        if (credentialResponse?.credential) {
+        
+        if (credentialResponse?.credential && !email) {
             // usar el api de google
             const response = await fetch('/api/google', {
                 method: 'POST',
@@ -68,7 +70,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
                 body: JSON.stringify(data)
             });
 
-        }else{
+        }else if(!password){
             //uso de la api user
             await fetch('/api/user', {
                 method: 'POST',
@@ -79,6 +81,9 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
             })
 
             data = form;
+            
+        } else{
+            return 'no puden enviar los datos, ya esta registrado'
         }
         
         //asignar datos al local storage
@@ -91,7 +96,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
         setUserT(evalUserT(userType))
         setPassword(data.password);
         authState();
-        
+        return 'Se enviaron los datos de forma exitosa';
     };
 
     const logout = () => {
@@ -103,6 +108,13 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
         setUserT(null);
         localStorage.removeItem('authState');
     };
+
+    async function confirmDates() {
+        const respuesta = await fetch('api/user');
+
+        const userData = await respuesta.json();
+        console.log(userData[0]);
+    } 
     
     const authState = () => {
         if (isAuthenticated === true && email !== null){
@@ -123,7 +135,7 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
     };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, email, name, picture, userT, password, login, logout, authState }}>
+    <AuthContext.Provider value={{ isAuthenticated, email, name, picture, userT, password, login, logout, confirmDates, authState }}>
       {children}
     </AuthContext.Provider>
   )
