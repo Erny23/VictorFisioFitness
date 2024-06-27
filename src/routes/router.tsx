@@ -22,7 +22,7 @@ import AllWorkoutsAssigned from "../admin/AllWorkoutsAssigned"
 import AllHabitsAssigned from "../admin/AllHabitsAssigned"
 import Habits from "../pages/Habits"
 import ProtectedRoutes from "../utils/ProtectedRoutes"
-import FormLogin from "../components/FormLogin"
+import Register from "../pages/Register"
 
 export const Router:React.FC<{isAuthenticated:boolean}> = ({isAuthenticated}) => {
   return (
@@ -30,7 +30,7 @@ export const Router:React.FC<{isAuthenticated:boolean}> = ({isAuthenticated}) =>
 
       {/* Paginas de login */}
       <Route path="/login" element={<Login />} />
-      <Route path="/Login resgister" element={<FormLogin />} />
+      <Route path="/user resgister" element={<Register />} />
       <Route path="*" element={<Login />} />
 
       {/* Paginas protegidas */}

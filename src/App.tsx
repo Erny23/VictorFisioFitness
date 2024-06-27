@@ -16,6 +16,8 @@ import './styles/App.css'
 const App:React.FC = () => {
 
     const { isAuthenticated } = React.useContext(AuthContext);
+    
+    
 
   return (
     <>

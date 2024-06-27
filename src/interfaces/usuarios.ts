@@ -4,6 +4,7 @@ interface usuarios {
     email: string,
     picture?: string,
     password: string,
+    cpassword: string,
     user_type: string
 }
 

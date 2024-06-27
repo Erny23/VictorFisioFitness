@@ -1,24 +1,11 @@
-import { Router } from 'express'
-// importacion de herramientas para la lectura de archivo json de prueba
-//import fs from 'node:fs'
-//import path from 'node:path';
+import { Router } from 'express';
 
 // importar base de datos
 import { db } from '../database.js';
 
 const router = Router();
 
-/*
-// Ejemplo de ruta que devuelve el contenido del archivo data.json
-router.get('/', (req, res) => {
-  const file = path.resolve('./database_example/datos.json');
-  const data = fs.readFileSync(file, 'utf8');
-  const info = JSON.parse(data);
-  res.json(info);
-});
-*/
-
-// evento post de la ruta
+// evento POST del registro de usuarios
 router.post('/', async (req, res) => {
 
   //desestructurando los parametro que se envian del cuarpo de la plantilla html
@@ -47,6 +34,16 @@ router.post('/', async (req, res) => {
     );
     return response;
   }
-})
+});
+
+//evento GET del registro de usuarios
+router.get('/', async (req, res) => {
+  const dataUsers = await db.query('SELECT * FROM users');
+  const users = JSON.stringify(dataUsers);
+  res.json(users);
+});
+
+//evento DELETE del registro de usuarios
+//router.delete('/', async (req, res));
 
 export default router;
