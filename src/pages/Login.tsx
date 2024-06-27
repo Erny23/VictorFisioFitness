@@ -1,5 +1,4 @@
 import LoginComponent from '../components/LoginComponent'
-//import PruebaModularAPI from '../utils/pruebaModularAPI'
 
 const Login = () => {
 

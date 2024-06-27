@@ -15,11 +15,9 @@ import './styles/App.css'
 
 const App:React.FC = () => {
 
-    const { isAuthenticated, confirmDates, authState } = React.useContext(AuthContext);
-
-    authState();
-    console.log(isAuthenticated);
-    confirmDates()
+    const { isAuthenticated } = React.useContext(AuthContext);
+    
+    
 
   return (
     <>
